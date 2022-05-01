@@ -21,8 +21,15 @@ namespace Flock.Controllers
             _usuario = usuario;
             _logger = logger;
         }
-
+        [ProducesResponseType(typeof(Models.Usuario), 200)]
+        /// <summary>
+        /// Retorna los datos del login
+        /// </summary>
+        /// <param name="loginUsuario"></param>
+        /// <returns></returns>
         [HttpPost("login")]
+
+        
         public IActionResult Post([FromBody] Models.LoginUsuario loginUsuario)
         {
             try

@@ -14,11 +14,11 @@ namespace Flock
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
-            Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    //.WriteTo.Console()
-    .CreateLogger();
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
+
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -26,7 +26,7 @@ namespace Flock
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().UseSerilog();
                 });
     }
 }

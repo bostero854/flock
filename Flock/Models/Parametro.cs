@@ -7,6 +7,9 @@ namespace Flock.Models
 {
     public class Parametro
     {
+        /// <summary>
+        /// Nombre abreviado
+        /// </summary>
         public string Nombre { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,21 +30,29 @@ namespace Flock
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen();
-            services.AddDbContext<flockContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<Serilog.ILogger>(options =>
+
+            services.AddSwaggerGen(c =>
             {
-                var connString = Configuration["Serilog:DefaultConnection"];
-                var tableName = Configuration["Serilog:TableName"];
-                return new LoggerConfiguration().WriteTo.
-                MSSqlServer(connString, tableName,
-                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning,
-                autoCreateSqlTable: true).CreateLogger();
+                //Obtenemos el directorio actual
+                var basePath = AppContext.BaseDirectory;
+                //Obtenemos el nombre de la dll por medio de reflexión
+                var assemblyName = System.Reflection.Assembly
+                              .GetEntryAssembly().GetName().Name;
+                //Al nombre del assembly le agregamos la extensión xml
+                var fileName = System.IO.Path
+                              .GetFileName(assemblyName + ".xml");
+                //Agregamos el Path, es importante utilizar el comando
+                var xmlPath = Path.Combine(basePath, fileName);
+                c.IncludeXmlComments(xmlPath);
+
             });
 
+        
+
+
+            services.AddDbContext<flockContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUsuario, DataAccess.Usuario>();
             services.AddScoped<IProvincia, Service.Provincia>();
-            //services.AddScoped<IUsuario, BancoModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

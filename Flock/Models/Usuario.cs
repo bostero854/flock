@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace Flock.Models
 {
+    /// <summary>
+    /// Usuario
+    /// </summary>
     public partial class Usuario
     {
         public int IdUsuario { get; set; }

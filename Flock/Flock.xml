@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flock</name>
+    </assembly>
+    <members>
+        <member name="M:Flock.Controllers.ProvinciaController.Get(System.String)">
+            <summary>
+            Se obtiene latitud y longitud sincronico
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Flock.Controllers.ProvinciaController.GetAsync(System.String)">
+            <summary>
+            Se obtiene latitud y longitud asincronico
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+            <summary> Se obtiene una operación por Id Pom </summary>
+            <response code="200">OK. Devuelve el objeto solicitado.</response>
+            <response code="404">NotFound. Operacion Inexistente.</response>
+            <response code="400">Bad request. Se generó un error en con la información requerida.</response>
+            <response code="401">Unauthorized. Falló la autenticación.</response>
+        </member>
+        <member name="P:Flock.Models.Centroide.Lat">
+            <summary>
+            latitud 
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Centroide.Lon">
+            <summary>
+            Longitud
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Georreferenciacion.Cantidad">
+            <summary>
+            Cantidad de registros
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Georreferenciacion.Provincias">
+            <summary>
+            Retorna una lista
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Georreferenciacion.Total">
+            <summary>
+            Cantidad de registros
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Parametro.Nombre">
+            <summary>
+            Nombre abreviado
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Provincia.Centroide">
+            <summary>
+            Centroide
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Provincia.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Flock.Models.Provincia.Nombre">
+            <summary>
+            Nombre de provincia
+            </summary>
+        </member>
+        <member name="T:Flock.Models.Usuario">
+            <summary>
+            Usuario
+            </summary>
+        </member>
+    </members>
+</doc>

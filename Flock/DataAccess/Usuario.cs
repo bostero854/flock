@@ -10,11 +10,10 @@ namespace Flock.DataAccess
 {
     public class Usuario: IUsuario
     {
-        //private readonly ILogger<Usuario> _logger;
-        private readonly Serilog.ILogger _logger;
+        private readonly ILogger<Usuario> _logger;
         private readonly flockContext _flock;
 
-        public Usuario(Serilog.ILogger logger, flockContext flock)
+        public Usuario(ILogger<Usuario> logger, flockContext flock)
         {
             _logger = logger;
             _flock = flock;
@@ -24,7 +23,7 @@ namespace Flock.DataAccess
         {
             try
             {
-                _logger.Information("Inicio");
+                _logger.LogInformation("Inicio");
                 var _login = _flock.Logins.Where(x => x.Nick.Equals(loginUsuario.Nick) && x.Clave.Equals(Seguridad.Clave.Sha256_hash(loginUsuario.Clave))).FirstOrDefault();
 
                 if (_login is object)
@@ -38,9 +37,9 @@ namespace Flock.DataAccess
                 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                _logger.LogError("GetUsuario", ex);
                 throw;
             }
         } 

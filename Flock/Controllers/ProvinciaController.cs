@@ -22,8 +22,14 @@ namespace Flock.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Se obtiene latitud y longitud sincronico
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        [Produces("application/json", Type = typeof(Models.Georreferenciacion))]
         [HttpGet("latlong/{nombre}")]
-        public IActionResult Post(string nombre)
+        public IActionResult Get(string nombre)
         {
             try
             {
@@ -32,13 +38,25 @@ namespace Flock.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError("Controlador", ex);
+                _logger.LogError("Controlador", ex);
                 throw;
             }
 
         }
+        /// <summary>
+        /// Se obtiene latitud y longitud asincronico
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        /// <summary> Se obtiene una operación por Id Pom </summary>
+        /// <response code="200">OK. Devuelve el objeto solicitado.</response>
+        /// <response code="404">NotFound. Operacion Inexistente.</response>
+        /// <response code="400">Bad request. Se generó un error en con la información requerida.</response>
+        /// <response code="401">Unauthorized. Falló la autenticación.</response>
+        [Produces("application/json", Type = typeof(Models.Georreferenciacion))]
         [HttpGet("latlongAsync/{nombre}")]
-        public async Task<IActionResult> PostAsync(string nombre)
+        
+        public async Task<IActionResult> GetAsync(string nombre)
         {
             try
             {
@@ -48,7 +66,7 @@ namespace Flock.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError("Controlador", ex);
+                _logger.LogError("Controlador", ex);
                 throw;
             }
 
