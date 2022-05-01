@@ -1,0 +1,26 @@
+--usuario: admin
+--clave: admin
+INSERT INTO Login(nick, clave, idUsuario, codEstado ,fechaAlta)
+     VALUES('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'
+			,1, '1', GETDATE())
+
+--usuario: ope
+--clave: ope
+INSERT INTO Login(nick, clave, idUsuario, codEstado ,fechaAlta)
+     VALUES('ope', '0b9c74d3c83d68ae32bec358fdb4b89c792f6c335e1d98d8138df5e4523acc15'
+			,2, '1', GETDATE())
+
+insert into Estado(descripcion, fechaAlta) values('Activo',GETDATE())
+insert into Estado(descripcion, fechaAlta) values('Baja',GETDATE())
+
+insert into Documento(Descripcion, fechaAlta)values('DNI',GETDATE())
+insert into Documento(Descripcion, fechaAlta)values('CUIT',GETDATE())
+
+insert into Perfil(descripcion, FechaAlta)values('Administrador',GETDATE())
+insert into Perfil(descripcion, FechaAlta)values('Operador',GETDATE())
+
+insert into Usuario(nombre, apellido, tipoDocumento, nroDocumento, fechaNacimiento, direccion, nroDireccion, codPerfil)
+values('Diego','Paz',1,'123456', GETDATE(), 'av santa fe','500', 1)
+
+insert into Usuario(nombre, apellido, tipoDocumento, nroDocumento, fechaNacimiento, direccion, nroDireccion, codPerfil)
+values('Lucia','Paz',1,'45612332', GETDATE(), 'av santa fe','500', 1)
